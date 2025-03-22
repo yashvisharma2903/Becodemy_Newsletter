@@ -4,6 +4,7 @@ import { DataGrid } from "@mui/x-data-grid"
 import {Box} from "@mui/material"
 import {format} from "timeago.js"
 import useSubscribersData from "@/shared/hooks/useSubscribersData"
+import { useEffect } from "react"
 const SubscribersData = () => {
     const {data , loading } = useSubscribersData();
 
@@ -25,7 +26,7 @@ const SubscribersData = () => {
           },
         },
       ];
-    
+
       const rows: any = [];
       data?.forEach((i:subscribersDataTypes) => {
         rows.push({
@@ -36,6 +37,10 @@ const SubscribersData = () => {
             status: i?.status,
         })
       })
+
+      useEffect(() => {
+        console.log("ROWS: ", rows);
+      }, [rows]);
 
   return (
     <Box m="20px">

@@ -9,7 +9,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export const stripeSubscribe = async ({
   price,
-  userId,
+  userId, 
 }: {
   price: string;
   userId: string;

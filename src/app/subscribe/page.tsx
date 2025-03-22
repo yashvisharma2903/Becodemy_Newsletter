@@ -1,23 +1,23 @@
-"use client"
-import { subscribe } from "@/actions/add.subscribe"
-import { useUser } from "@auth0/nextjs-auth0/client"
-import { useSearchParams } from "next/navigation"
-import { FormEvent , useState } from "react"
-import toast from "react-hot-toast"
-const Page = () => {
+"use client";
+import { subscribe } from "@/actions/add.subscribe";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { useSearchParams } from "next/navigation";
+import { FormEvent, Suspense, useState } from "react";
+import toast from "react-hot-toast";
 
-    const [value, setValue] = useState("");
-    const {user} = useUser();
-    const [loading, setLoading] = useState(false);
+const Subscribe = () => {
+  const [value, setValue] = useState("");
+  const { user } = useUser();
+  const [loading, setLoading] = useState(false);
 
   const searchParams = useSearchParams();
   const username: string = searchParams.get("username")!;
-  console.log(username)
+  console.log(username);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    await subscribe({ email: value, username , user_id: user?.sid as string})
+    await subscribe({ email: value, username, user_id: user?.sid as string })
       .then((res) => {
         setLoading(false);
         if (res.error) {
@@ -33,15 +33,12 @@ const Page = () => {
     setValue("");
   };
 
-
   return (
     <div className="w-full flex flex-col items-center justify-center h-screen">
-         <div>
-            <h1 className="text-7xl pb-8 capitalize">
-                {username} Newsletter
-                </h1>
-         </div>
-         <form
+      <div>
+        <h1 className="text-7xl pb-8 capitalize">{username} Newsletter</h1>
+      </div>
+      <form
         className="flex w-full max-w-md border rounded overflow-hidden"
         onSubmit={(e) => handleSubmit(e)}
       >
@@ -56,14 +53,22 @@ const Page = () => {
         />
         <button
           type="submit"
-          disabled = {loading}
+          disabled={loading}
           className="px-8 bg-blue-500 text-white font-bold py-4 rounded-r hover:bg-blue-600 focus:outline-none"
         >
           Subscribe
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+const Page = () => {
+  return (
+    <Suspense>
+      <Subscribe />
+    </Suspense>
+  );
+};
+
+export default Page;

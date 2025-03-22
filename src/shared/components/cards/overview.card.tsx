@@ -3,9 +3,23 @@
 "use client";
 import useSubscribersAnalytics from "@/shared/hooks/useSubscribersAnalytics";
 import { ICONS } from "@/shared/utils/icons";
-  
+import { useEffect } from "react";
+
+interface subscribersAnalyticsData {
+  month: string;
+  count: string;
+}
+
 const DashboardOverViewCard = () => {
   const { subscribersData, loading } = useSubscribersAnalytics();
+
+  let count = 0;
+  const subscribers =
+    subscribersData &&
+    subscribersData?.last7Months?.forEach((item: subscribersAnalyticsData) => {
+      count += parseInt(item?.count);
+    });
+
   const lastMonthSubscribers =
     !loading &&
     subscribersData?.last7Months[subscribersData?.last7Months?.length - 1];
@@ -32,7 +46,7 @@ const DashboardOverViewCard = () => {
         <h5 className="text-lg">Subscribers</h5>
         <div className="w-full flex items-center justify-between">
           <span className="font-medium pt-2">
-            {loading ? "..." : 1}
+            {loading ? "..." : count}
           </span>
           <div className="h-[30px] flex p-2 items-center bg-[#DCFCE6] rounded-full">
             <span className="text-[#21C55D]">{ICONS.topArrow}</span>

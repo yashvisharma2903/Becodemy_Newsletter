@@ -179,4 +179,3 @@ const PricingCard = ({ active }: { active: string }) => {
 };
 
 export default PricingCard;
-

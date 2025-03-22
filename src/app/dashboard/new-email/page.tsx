@@ -2,10 +2,10 @@
 import { ICONS } from '@/shared/utils/icons';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import React from 'react'
+import React, { Suspense } from 'react'
 import Emaileditor from "@/shared/components/editor/email.editor";
 
-const Page = () => {
+const NewEmail = () => {
 
   const searchParams = useSearchParams();
   const subject: string = searchParams.get("subject")!;
@@ -30,5 +30,14 @@ const Page = () => {
     </div>
   )
 }
+
+const Page = () => {
+  return (
+    <Suspense>
+      <NewEmail />
+    </Suspense>
+  )
+}
+
 
 export default Page

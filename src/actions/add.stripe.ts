@@ -29,7 +29,7 @@ export const addStripe = async (
           await Membership.create({
             userId: id,
             stripeCustomerId: customer.id,
-            plan: "LAUNCH",
+            plan: "Grow",
           });
         });
     }
