@@ -21,7 +21,6 @@ export default function Providers({children}:ProviderProps){
 
     const isStripeCustomerIdHas = async () => {
       if (user) {
-        console.log("USER AVAILABLE", user)
         await addStripe(user.sid as string, user.email as string);
       }
     };
@@ -32,7 +31,7 @@ export default function Providers({children}:ProviderProps){
           isStripeCustomerIdHas();
         }
       }
-    }, []);
+    }, [user]);
 
 
     return (

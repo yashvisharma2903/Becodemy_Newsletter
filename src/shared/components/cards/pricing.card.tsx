@@ -11,7 +11,6 @@ const PricingCard = ({ active }: { active: string }) => {
   const handleSubscription = async ({ price }: { price: string }) => {
     stripeSubscribe({ price: price, userId: user?.sid as string }).then(
       (res: any) => {
-        console.log(res);
         router.replace(res)
       }
     );

@@ -25,14 +25,13 @@ const transporter = nodemailer.createTransport({
         console.log(error);
         reject(error);
       } else {
-        console.log("Server is ready to take our messages");
         resolve(success);
       }
     });
   });
 
     const mailOptions = {
-      from:process.env.EMAIL , 
+      from:process.env.EMAIL ,
       to: to.join(','),
       subject: subject,
       html: html,
@@ -52,7 +51,7 @@ const transporter = nodemailer.createTransport({
               }
             });
           });
-  
+
     // try {
     //   await transporter.sendMail(mailOptions);
     //   console.log(`Email sent to ${to}`);
@@ -62,9 +61,9 @@ const transporter = nodemailer.createTransport({
   };
 
 export default sendEmail;
-  
+
   // Function to send email to all subscribers
- 
+
 
 // export const sendPasswordResetEmail = async (email: string, token: string) => {
 //   const customLink = ${domain}/auth/new-password?token=${token};

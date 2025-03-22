@@ -12,7 +12,7 @@
 // const Write = () => {
 //     const router = useRouter();
 //     const { user } = useUser();
-     
+
 //     const handleCreate = () => {
 //         if (emailTitle.length === 0) {
 //           toast.error("Enter the email subject to continue!");
@@ -26,7 +26,7 @@
 //         FindEmails();
 //         // eslint-disable-next-line react-hooks/exhaustive-deps
 //       }, [user]);
-    
+
 
 //       const FindEmails = async () => {
 //         await getEmails({ newsLetterOwnerId: user?.id! })
@@ -41,7 +41,7 @@
 //       const deleteHanlder = async (id: string) => {
 //         //
 //       };
-    
+
 
 //     const [emails, setEmails] = useState("");
 //     const [open, setOpen] = useState(false);
@@ -159,13 +159,11 @@ const Write = () => {
      getEmails({ newsLetterOwnerId: user?.sid as string })
       .then((res) => {
         setEmails(res);
-        console.log(res);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-console.log(emails);
 
   return (
     <div className="w-full flex p-5 flex-wrap gap-6 relative">

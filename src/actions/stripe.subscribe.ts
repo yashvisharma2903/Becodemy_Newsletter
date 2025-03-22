@@ -9,14 +9,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export const stripeSubscribe = async ({
   price,
-  userId, 
+  userId,
 }: {
   price: string;
   userId: string;
 }) => {
   try {
     const user = await Membership.findOne({ userId });
-    console.log(user)
     const checkoutSession = await stripe.checkout.sessions.create({
       mode: "subscription",
       customer: user.stripeCustomerId,

@@ -12,7 +12,6 @@ const Subscribe = () => {
 
   const searchParams = useSearchParams();
   const username: string = searchParams.get("username")!;
-  console.log(username);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

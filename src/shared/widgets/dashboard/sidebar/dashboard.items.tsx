@@ -13,13 +13,12 @@ const DashboardItems = ({bottomContent}:{bottomContent?: boolean}) => {
     const { activeRoute , setActiveRoute} = useRouteChange();
     const {  user } =   useUser();
     const pathName = usePathname();
-    console.log(sideBarItems);
 
 
     useEffect(() => {
       setActiveRoute(pathName);
     }, [pathName, setActiveRoute]);
-    
+
   return (
     <>
         {!bottomContent ? (
@@ -55,7 +54,7 @@ const DashboardItems = ({bottomContent}:{bottomContent?: boolean}) => {
                 key={index}
                 className='p-2 py-5 flex items-center'
                 href={item.url === "/" ? `subscribe?username=${user?.nickname}` : item.url}
-                
+
                 >
                 <span
                   className={`text-3xl mr-2 ${
@@ -77,7 +76,7 @@ const DashboardItems = ({bottomContent}:{bottomContent?: boolean}) => {
             {/* sign out */}
             <a className="p-2 py-5 flex items-center cursor-pointer border-b"
             href = "/api/auth/logout"
-          
+
           >
             <span className="text-3xl mr-2">{ICONS.logOut}</span>
             <span className="text-xl">Sign Out</span>

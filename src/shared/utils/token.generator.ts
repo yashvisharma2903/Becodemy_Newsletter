@@ -10,7 +10,6 @@ export const generateApiKey = async (email: string) => {
         authorization: `Bearer ${process.env.AUTH0_MANAGEMENT_TOKEN}`
       }
     })
-    console.log(response)
     const token = jwt.sign(response.data[0], process.env.JWT_SECRET_KEY!);
     return token;
   } catch (error) {
